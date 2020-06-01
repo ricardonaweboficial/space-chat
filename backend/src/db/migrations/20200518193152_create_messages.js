@@ -2,13 +2,13 @@ exports.up = function(knex) {
 	return knex.schema.createTable('messages', function (table) {
 		table.increments();
 		
+		table.string('user_name_from').notNullable(); // Sender
+		table.string('user_name_to').notNullable(); // Recipient
 		table.string('message').notNullable();
-		table.timestamp(true, true);
+		table.timestamp(true, true); // Date (Create and Update)
 
-		table.string('user_send');
-
-		table.foreign('user_send').references('id').inTable('users');
-
+		table.foreign('user_name_from').references('user_name').inTable('users'); // User Name of owner
+		
 	});
 };
 

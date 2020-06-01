@@ -1,13 +1,11 @@
 exports.up = function(knex) {
   	return knex.schema.createTable('friends', function (table) {
 		table.increments();
+	
+		table.string('user_name_friend').notNullable();
+		table.string('user_name_owner');
 
-		table.string('name').notNullable();
-		table.string('email').notNullable();
-
-		table.string('user_id')
-
-		table.foreign('user_id').references('id').inTable('users');
+		table.foreign('user_name_owner').references('user_name').inTable('users');
 	});
 };
 
